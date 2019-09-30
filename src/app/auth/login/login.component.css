@@ -1,0 +1,29 @@
+form {
+    margin-top: 3rem;
+}
+
+form .btn {
+    margin-left: 1rem;
+}
+
+form .form-section {
+    margin-bottom: 2rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.ng-touched.ng-invalid:focus {
+    border-color: #dc3545;
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}
+
+.invalid-feedback {
+    display: block;
+}

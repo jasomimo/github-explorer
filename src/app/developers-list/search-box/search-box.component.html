@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
+    <div class="form-group">
+        <label for="searchBox" class="form-label h3 mb-4">Search by Location</label>
+        <div class="input-group">
+            <input [ngModel]="searchTerm" [name]="searchInputName" type="text" class="form-control font-size-up" placeholder="e.g. Bratislava">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary px-4" type="submit">Go</button>
+            </div>
+        </div>
+    </div>
+</form>

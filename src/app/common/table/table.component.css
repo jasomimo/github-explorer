@@ -1,0 +1,30 @@
+th.sortable {
+    transition: background-color .15s ease-in-out;
+}
+
+th.sortable:hover {
+    background-color: #4fa4ff!important;
+}
+
+.sort-active {
+    background-color: #aad3ff
+}
+
+img.avatar {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.page-navigation > .btn, .ellipsis {
+    font-size: 0.75rem;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem
+}
+
+.page-navigation > .disabled {
+    box-shadow: none !important;
+}
+
+.page-navigation > .page-active {
+    box-shadow: 0 0.1rem .3rem .1rem rgba(0,0,0,.25);
+}

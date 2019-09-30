@@ -1,0 +1,48 @@
+<div *ngIf="table.rows.length > 0" class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>              
+                <th *ngFor="let column of table.columns" scope="col" (click)="sortBy(column.id)" [ngClass]="{'pointer sortable': column.sortable, 'sort-active': column.id === table.sortBy}">
+                    {{column.label}}
+                    <span *ngIf="table.sortAscending && column.id === table.sortBy" class="font-size-up ml-1">&#x025B4;</span>
+                    <span *ngIf="!table.sortAscending && column.id === table.sortBy" class="font-size-up ml-1">&#x025BE;</span>                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of table.rows">
+                <td *ngFor="let rowItem of row.rowItems" [ngSwitch]="rowItem.type" [ngClass]="{'sort-active': rowItem.columnId === table.sortBy}">
+                    <img *ngSwitchCase="rowItemType.Image" class="avatar" [src]="rowItem.imageUrl" [alt]="rowItem.alt">
+                    <span *ngSwitchCase="rowItemType.Link">
+                        <a *ngIf="isInternalLink(rowItem)" [routerLink]="rowItem.link" [target]="getLinkTarget(rowItem)">
+                            {{rowItem.value}}
+                        </a>
+                        <a *ngIf="!isInternalLink(rowItem)" [href]="rowItem.link" [target]="getLinkTarget(rowItem)">
+                            {{rowItem.value}}
+                        </a>
+                    </span>
+                    <span *ngSwitchCase="rowItemType.Date">{{rowItem.date | date }}</span>
+                    <span *ngSwitchCase="rowItemType.Number">{{rowItem.number}}</span>
+                    <span *ngSwitchCase="rowItemType.Boolean">
+                        <fa-icon *ngIf="rowItem.boolean" [icon]="trueIcon" class="text-success"></fa-icon>
+                        <fa-icon *ngIf="!rowItem.boolean" [icon]="falseIcon" class="text-danger"></fa-icon>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-muted font-italic mb-2">Showing {{table.rows.length}} of {{table.totalRecords}} records.</p>
+            </div>
+            <div class="col-md-6 text-right page-navigation">
+                <button *ngIf="table.firstUrl" (click)="onPageChange(naviationItem.First)" class="btn btn-outline-dark">First</button>
+                <button *ngIf="table.previousUrl" (click)="onPageChange(naviationItem.Previous)" class="btn btn-outline-dark">Previous</button>
+                <button class="btn btn-primary page-active">{{table.currentPage}}</button>
+                <button *ngIf="table.nextUrl" (click)="onPageChange(naviationItem.Next)" class="btn btn-outline-dark">Next</button>
+                <button *ngIf="table.lastUrl" (click)="onPageChange(naviationItem.Last)" class="btn btn-outline-dark">Last</button>
+            </div>
+        </div>
+    </div>
+</div>

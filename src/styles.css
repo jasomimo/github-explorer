@@ -1,0 +1,11 @@
+.font-size-up {
+    font-size: 1.25rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.font-size-reset {
+    font-size: 1rem !important;
+}

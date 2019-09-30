@@ -1,0 +1,5 @@
+<div class="alert alert-warning mt-5" role="alert">
+    <button (click)="onClose()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h5 *ngIf="alertTitle" class="alert-heading font-size-reset mt-2">{{alertTitle}}</h5>
+    <p class="mb-0">{{alertMessage}}</p>
+</div>

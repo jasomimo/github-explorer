@@ -1,0 +1,15 @@
+.navbar {
+    height: 70px;
+}
+
+.navbar-brand { 
+    font-size: 1.5rem;
+}
+
+.login-button {
+    font-size: 0.9rem;
+}
+
+img.profile-avatar {
+    height: 25px;
+}

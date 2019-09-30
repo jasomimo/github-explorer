@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            
+            <app-alert *ngIf="authFailedMessage" alertTitle="Login failed" [alertMessage]="authFailedMessage" (close)="onAlertClose()"></app-alert>
+            
+            <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="login">
+                            Login
+                        </label>
+                        <input ngModel #loginInput="ngModel" [name]="loginInputName" required type="text" class="form-control" placeholder="Enter GitHub login">
+                        <div *ngIf="loginInput.touched && loginInput.invalid" class="invalid-feedback">
+                            Required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">
+                            Password
+                        </label>
+                        <input ngModel #passwordInput="ngModel" [name]="passwordInputName" required type="password" class="form-control" placeholder="Enter GitHub password">
+                        <div *ngIf="passwordInput.touched && passwordInput.invalid" class="invalid-feedback">
+                            Required
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-3" [disabled]="authStarted || loginForm.invalid">
+                        <span *ngIf="authStarted" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                        Login
+                    </button>
+                    <a class="btn btn-outline-secondary px-3" [ngClass]="{'disabled': authStarted}" routerLink="/">Cancel</a>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

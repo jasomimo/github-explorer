@@ -1,0 +1,17 @@
+<nav class="navbar navbar-light bg-white shadow-sm">
+    <a class="navbar-brand" routerLink="/">
+        <strong>GitHub</strong> <sup><i>Explorer</i></sup>
+    </a>
+    
+    <a *ngIf="!loggedIn && showLogin" class="btn btn-primary login-button my-2 mr-3 mx-3 px-3" routerLink="/login">Login</a>
+    
+    <div *ngIf="loggedIn" class="mr-2">
+        <a [routerLink]="['/profile']">
+            <img [src]="currentUserAvatarUrl" class="profile-avatar mr-1" alt="User Avatar">
+        </a>
+        <a [routerLink]="['/profile']">
+            {{currentUserLogin}}
+        </a>
+        (<a (click)="onLogout()" href="javascript:;">logout</a>)
+    </div>
+</nav>

@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            
+            <!-- Loading spinner -->
+            <div *ngIf="profileIsLoading" class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            
+            <app-alert *ngIf="profileErrorMessage" alertTitle="Failed to load profile" [alertMessage]="profileErrorMessage" (close)="onProfileErrorClose()"></app-alert>
+            
+            <!-- Profile card -->
+            <div *ngIf="!profileIsLoading && profile" class="card">
+                <div class="card-top"></div>
+                <div class="avatar mx-auto">
+                    <img [src]="profile.avatarUrl">
+                </div>
+                <div class="card-body">
+                    
+                    <!-- Main info -->
+                    <h3 class="card-title text-center">
+                        {{profile.login}} 
+                        <small *ngIf="profile.name" class="text-muted">({{profile.name}})</small>
+                    </h3>
+                    <p *ngIf="isLoggedInUserProfile">
+                        Hey! Welcome to your profile, please see <a href="/profile#issues-section">list of your GitHub issues</a> down below.
+                    </p>
+                    <div class="row border-top card-row">
+                        <div class="col-sm-3 mb-2"><fa-icon [icon]="mapMarkerIcon" class="mr-1"></fa-icon> {{profile.location}}</div>
+                        <div class="col-sm-3 mb-2">Registered on {{profile.registrationDate | date}}</div>
+                        <div class="col-sm-3 mb-2">Repositories <span class="badge badge-secondary">{{profile.repositoriesCount}}</span></div>
+                        <div class="col-sm-3 mb-2">Followers <span class="badge badge-secondary">{{profile.followersCount}}</span></div>
+                    </div>
+                    
+                    <!-- Repositories info -->
+                    <div class="row border-top card-row">
+                        <div class="col">
+                            <h5>Repositories</h5>
+                            <app-alert *ngIf="reposErrorMessage" [alertMessage]="reposErrorMessage" (close)="onReposErrorClose()"></app-alert>
+                            <div *ngIf="reposIsLoading" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div *ngIf="!reposIsLoading">
+                                <app-table *ngIf="repos" [table]="repos" (navigation)="onReposTableNavigation($event)" (sort)="onReposTableSort($event)"></app-table>
+                                <p *ngIf="!reposErrorMessage && !repos" class="text-muted no-results">No repositories.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Followers info -->
+                    <div class="row border-top card-row">
+                        <div class="col">
+                            <h5>Followers</h5>
+                            <app-alert *ngIf="followersErrorMessage" [alertMessage]="followersErrorMessage" (close)="onFollowersErrorClose()"></app-alert>
+                            <div *ngIf="followersIsLoading" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div *ngIf="!followersIsLoading">
+                                <app-table *ngIf="followers" [table]="followers" (navigation)="onFollowersTableNavigation($event)"></app-table>
+                                <p *ngIf="!followersErrorMessage && !followers" class="text-muted no-results">No followers.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Issues info -->
+                    <div *ngIf="isLoggedInUserProfile" class="row border-top card-row">
+                        <div class="col">
+                            <h5 id="issues-section">Issues</h5>
+                            <app-alert *ngIf="issuesErrorMessage" [alertMessage]="issuesErrorMessage" (close)="onIssuesErrorClose()"></app-alert>
+                            <div *ngIf="issuesIsLoading" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div *ngIf="!issuesIsLoading">
+                                <app-table *ngIf="issues" [table]="issues" (navigation)="onIssuesTableNavigation($event)"></app-table>
+                                <p *ngIf="!issuesErrorMessage && !issues" class="text-muted no-results">No GitHub issues.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
