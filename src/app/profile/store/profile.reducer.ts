@@ -51,6 +51,18 @@ const _profileReducer = createReducer(initialState,
         colnedState.profile = null;
         colnedState.profileErrorMessage = null;
         
+        colnedState.repos = null;
+        colnedState.reposLoadStarted = false;
+        colnedState.reposErrorMessage = null;
+        
+        colnedState.followers = null;
+        colnedState.followersLoadStarted = false;
+        colnedState.followersErrorMessage = null;
+        
+        colnedState.issues = null;
+        colnedState.issuesLoadStarted = false;
+        colnedState.issuesErrorMessage = null;
+        
         return colnedState;
     }),
     on(profileAction.profileLoaded, (state, action) => {
