@@ -13,3 +13,10 @@ Angular app to browse GitHub users.
 
 ## Live demo
 - please see live demo at https://github-explorer-10671.firebaseapp.com/
+
+## Build with
+- Angular 8
+- Bootstrap 4
+- NgRx 8
+- rxjs 6
+- free icon package form Fontawesome
